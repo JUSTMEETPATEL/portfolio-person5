@@ -60,26 +60,28 @@ export function DialogueBox({ speaker, text, onComplete }: DialogueBoxProps) {
   }, [text, onComplete]);
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full max-w-4xl bg-persona-black text-persona-white p-6 md:p-8 border-4 border-persona-white shadow-[8px_8px_0px_#e60012]"
-      style={{ clipPath: 'polygon(2% 0, 100% 0, 98% 100%, 0% 100%)' }}
-    >
+    <div className="relative w-full max-w-4xl pt-6 pl-4">
       <div 
         ref={speakerRef}
-        className="absolute -top-6 -left-4 bg-persona-white text-persona-black font-display text-2xl md:text-3xl px-4 py-1 uppercase"
+        className="absolute top-0 left-0 bg-persona-white text-persona-black font-display text-2xl md:text-3xl px-4 py-1 uppercase z-10"
         style={{ clipPath: 'polygon(0 0, 100% 0, 90% 100%, 10% 100%)' }}
       >
         {speaker}
       </div>
       
       <div 
-        ref={textRef}
-        className="font-mono text-lg md:text-xl leading-relaxed mt-4 min-h-[80px]"
-      />
-      
-      {/* Blinking indicator */}
-      <div className="absolute bottom-4 right-6 w-4 h-4 bg-persona-red rounded-full animate-pulse" />
+        ref={containerRef}
+        className="bg-persona-black text-persona-white p-6 md:p-8 border-4 border-persona-white shadow-[8px_8px_0px_#e60012] relative"
+        style={{ clipPath: 'polygon(2% 0, 100% 0, 98% 100%, 0% 100%)' }}
+      >
+        <div 
+          ref={textRef}
+          className="font-mono text-lg md:text-xl leading-relaxed mt-2 min-h-[80px]"
+        />
+        
+        {/* Blinking indicator */}
+        <div className="absolute bottom-4 right-6 w-4 h-4 bg-persona-red rounded-full animate-pulse" />
+      </div>
     </div>
   );
 }
