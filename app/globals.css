@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-persona-red: #e60012;
+  --color-persona-black: #000000;
+  --color-persona-white: #ffffff;
+  --color-persona-gray: #222222;
+  --color-persona-yellow: #fceb00;
+
+  --font-display: var(--font-anton);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+@layer base {
+  body {
+    @apply bg-persona-black text-persona-white font-body overflow-hidden selection:bg-persona-yellow selection:text-persona-black;
+    cursor: none; /* Hide default cursor for custom GSAP cursor */
+  }
+
+  /* Glitch effect base */
+  .glitch-text {
+    position: relative;
+  }
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+  }
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 blue;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 44px, 0); }
+    5% { clip: rect(12px, 9999px, 59px, 0); }
+    10% { clip: rect(48px, 9999px, 29px, 0); }
+    15% { clip: rect(42px, 9999px, 73px, 0); }
+    20% { clip: rect(63px, 9999px, 27px, 0); }
+    25% { clip: rect(34px, 9999px, 55px, 0); }
+    30% { clip: rect(86px, 9999px, 73px, 0); }
+    35% { clip: rect(20px, 9999px, 20px, 0); }
+    40% { clip: rect(26px, 9999px, 60px, 0); }
+    45% { clip: rect(9px, 9999px, 46px, 0); }
+    50% { clip: rect(41px, 9999px, 3px, 0); }
+    55% { clip: rect(59px, 9999px, 14px, 0); }
+    60% { clip: rect(100px, 9999px, 26px, 0); }
+    65% { clip: rect(59px, 9999px, 50px, 0); }
+    70% { clip: rect(77px, 9999px, 65px, 0); }
+    75% { clip: rect(39px, 9999px, 63px, 0); }
+    80% { clip: rect(13px, 9999px, 72px, 0); }
+    85% { clip: rect(88px, 9999px, 68px, 0); }
+    90% { clip: rect(70px, 9999px, 67px, 0); }
+    95% { clip: rect(71px, 9999px, 103px, 0); }
+    100% { clip: rect(83px, 9999px, 40px, 0); }
+  }
+
+  /* Comic slash clip path */
+  .comic-slash {
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  }
+  .comic-slash-reverse {
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  
+  /* Jagged dialogue box */
+  .jagged-box {
+    clip-path: polygon(
+      0% 5%, 5% 0%, 95% 0%, 100% 5%, 
+      100% 95%, 95% 100%, 5% 100%, 0% 95%,
+      2% 50%, 0% 40%, 3% 30%, 0% 20%
+    );
+  }
+}
